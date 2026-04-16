@@ -1,0 +1,17 @@
+services:
+  webserver:
+    image: lajello/my-python-app-front
+    container_name: my_frontend
+    expose: ["5000"]
+    build: ./frontend
+    ports: ["8000:5000"]
+    environment:
+      FLASK_ENV: "development"
+  backend:
+    image: lajello/my-python-app-back
+    container_name: my_backend
+    expose: ["5000"]
+    build: ./backend
+    ports: ["8001:5000"]
+    environment:
+      FLASK_ENV: "development"

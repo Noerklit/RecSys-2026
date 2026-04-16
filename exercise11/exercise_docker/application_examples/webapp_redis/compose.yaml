@@ -1,0 +1,16 @@
+services:
+  webserver:
+    image: lajello/simplewebserver2
+    container_name: my_webserver
+    expose: ["5000"]
+    build: .
+    ports: ["8000:5000"]
+    volumes: ["myvolume:/var"]
+    environment:
+      FLASK_ENV: "development"
+  redis:
+    container_name: my_db
+    image: "redis:alpine"
+volumes:
+  myvolume:
+    name: "webapp_volume"
