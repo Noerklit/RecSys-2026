@@ -27,7 +27,4 @@ def train_and_package_model(data_path, model_output_path):
   
 
 if __name__ == "__main__":
-  train_and_package_model('../data/ml-latest/ratings.csv', '../models/model_SVD.pkl')
-    
-    
-    
+  train_and_package_model('./data/ml-latest/ratings.csv', './models/model_SVD.pkl')
