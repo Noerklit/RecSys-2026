@@ -7,6 +7,7 @@ import logging
 app = Flask(__name__)
 errors = []
 
+# So our logs are not flooded with all the GET requests
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
@@ -24,11 +25,9 @@ def collect():
     errors.append(error_sq)
     rmse = np.sqrt(np.mean(errors))
     
-    # Save to Volume
-    log_path = "/data/feedback.csv"
-    pd.DataFrame([data]).to_csv(log_path, mode='a', index=False, header=not os.path.exists(log_path))
+    print(f"Received tuple containing actual: {actual} and estimated: {est}")
     
-    print(f"Update: RMSE is {rmse:.4f}")
+    print(f"Current RMSE is: {rmse}")
     return jsonify({"status": "ok", "rmse": rmse})
 
 if __name__ == '__main__':
